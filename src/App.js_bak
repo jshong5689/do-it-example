@@ -13,6 +13,9 @@ import ForceUpdateExample from "./03/ForceUpdateExample";
 import IncreaseTest from "./03/IncreaseTest";
 import LifecycleExample from "./03/LifecycleExample";
 import TotalCounter from "./03/TotalCounter";
+import ListExample from "./03/ListExample";
+import Todolist from "./03/Todolist";
+import Counter from "./03/Counter";
 
 function App() {
   var test = (arg) => {
@@ -50,7 +53,11 @@ function App() {
       <IncreaseTest />
       <LifecycleExample />
       <TotalCounter />
+      <ListExample/>
+      <Todolist/>
+      <Counter/>
     </div>
+    
   );
 }
 
