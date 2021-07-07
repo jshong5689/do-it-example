@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
-class Input extends PureComponent {
+class InputWithStyle extends PureComponent {
   constructor(props) {
     super(props);
     this.setRef = this.setRef.bind(this);
@@ -30,40 +30,42 @@ class Input extends PureComponent {
     this.ref = ref;
   }
   render() {
-    const { errorMessage, label, name, value, type, onFocus } = this.props;
+    const { errorMessage, label, value, name, type } = this.props;
 
     return (
-      <label>
-        {label}
+      <div className="input-field">
         <input
           id={`input_${name}`}
+          className={`validate ${errorMessage && "invalid"}`}
           ref={this.setRef}
           onChange={this.handleChange}
-          onFocus={onFocus}
           value={value}
-          type={type}
         />
-        {errorMessage && <span className="error">{errorMessage}</span>}
-      </label>
+        <label className="active" for={`input_${name}`}>
+          {label}
+        </label>
+        {errorMessage && (
+          <span className="helper-text" data-error={errorMessage}>
+            {errorMessage}
+          </span>
+        )}
+      </div>
     );
   }
 }
 
-Input.propTypes = {
-  type: PropTypes.oneOf(["number"]),
+InputWithStyle.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   errorMessage: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  autoFocus: PropTypes.bool,
 };
 
-Input.defaultProps = {
+InputWithStyle.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   autoFocus: false,
   type: "number",
 };
-export default Input;
+export default InputWithStyle;
